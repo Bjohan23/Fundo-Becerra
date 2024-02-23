@@ -7,8 +7,8 @@ const TrabajadoresController = {
     db.query("SELECT * FROM trabajadores", (error, trabajadores, fields) => {
       if (error) throw error;
       // renderizamos la vista y le pasamos los datos de la consulta
-      // res.render("trabajadores", { trabajadores: trabajadores });
-      res.json(trabajadores);
+      res.render("trabajadores", { trabajadores: trabajadores });
+      //   res.json(trabajadores);
     });
   },
 };

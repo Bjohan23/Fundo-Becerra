@@ -13,9 +13,4 @@ con.connect(function (err) {
   console.log();
 });
 
-// con.query("SELECT * FROM trabajadores", function (err, result, fields) {
-//   if (err) throw err;
-//   console.log(result);
-// });
-
 module.exports = con; // Exportamos la conexión para poder utilizarla en otros archivos
