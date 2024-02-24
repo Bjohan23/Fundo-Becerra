@@ -1,0 +1,13 @@
+.sidebar {
+  /* background-image: linear-gradient(to top, #004f9e, #003a7c); */
+  background-image: linear-gradient(
+    to top,
+    #2775c4 0%,
+    #1d579c 50%,
+    #47b5ff 100%
+  );
+}
+.main-panel {
+  /* background-image: linear-gradient(to top, #007efc, #82baff); */
+  background-image: linear-gradient(to top, #007efc69, #82baff67);
+}
