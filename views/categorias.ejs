@@ -1,0 +1,166 @@
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Trabajadores</h4>
+          <p class="category">Trabajadores Registrados</p>
+        </div>
+
+        <div class="card-body">
+          <!-- boton del modal -->
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+          >
+            Launch demo modal
+          </button>
+
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="exampleModalCenter"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true"
+          >
+            <div
+              class="modal-dialog modal-dialog-centered modal-lg"
+              role="document"
+            >
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">
+                    Registrar Producto
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="row">
+                      <div class="col-md-6 pr-md-1">
+                        <div class="form-group">
+                          <label>Nombre del Producto</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Nombre del Producto"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6 pl-md-1">
+                        <div class="form-group">
+                          <label>Categoría</label>
+                          <select class="form-control">
+                            <option value="">Selecciona una categoría</option>
+                            <!-- Aquí puedes cargar dinámicamente las opciones de categoría desde la base de datos -->
+                            <option value="1">Categoría 1</option>
+                            <option value="2">Categoría 2</option>
+                            <option value="3">Categoría 3</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 pr-md-1">
+                        <div class="form-group">
+                          <label>Peso</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Peso del Producto"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6 pl-md-1">
+                        <div class="form-group">
+                          <label>Cantidad</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            placeholder="Cantidad del Producto"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Descripción</label>
+                          <textarea
+                            rows="4"
+                            cols="80"
+                            class="form-control"
+                            placeholder="Descripción del Producto"
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Cerrar
+                  </button>
+                  <button type="button" class="btn btn-primary">
+                    Guardar Producto
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- fin del modal -->
+          <div class="table-responsive">
+            <table class="table table-hover table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Editar</th>
+                  <th scope="col">Borrar</th>
+                </tr>
+              </thead>
+              <% categorias.forEach((categorias)=>{ %>
+              <tbody>
+                <tr>
+                  <th scope="row" style="color: aliceblue">
+                    <%= categorias.id %>
+                  </th>
+                  <td><%= categorias.nombre %></td>
+                  <!-- <td><%= categorias.imagen %></td> -->
+                  <td>
+                    <a href="#" class="btn btn-success btn-icon btn-sm">
+                      <i class="fa fa-edit"></i>
+                    </a>
+                  </td>
+                  <td>
+                    <a href="#" class="btn btn-danger btn-icon btn-sm">
+                      <i class="fa fa-trash"></i>
+                    </a>
+                  </td>
+                </tr>
+
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

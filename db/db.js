@@ -11,6 +11,7 @@ con.connect(function (err) {
   if (err) throw err;
   console.log("Conectado!");
   console.log();
-});
+}
+);
 
 module.exports = con; // Exportamos la conexión para poder utilizarla en otros archivos

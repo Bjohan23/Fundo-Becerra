@@ -1,0 +1,95 @@
+<div class="content">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title">Editar Perfil</h5>
+        </div>
+        <div class="card-body">
+          <form action="/rTrabajadores" method="post">
+            <div class="row">
+              <div class="col-md-6 pr-md-1">
+                <div class="form-group">
+                  <label>Nombres</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nombres"
+                    name="nombres"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6 pl-md-1">
+                <div class="form-group">
+                  <label>Apellidos</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Apellidos"
+                    name="apellidos"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5 p-md-1">
+                <div class="form-group">
+                  <label>Celular</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Celular"
+                    name="celular"
+                  />
+                </div>
+              </div>
+              <div class="col-md-3 px-md-1">
+                <div class="form-group">
+                  <label>DNI</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="DNI"
+                    name="dni"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4 pl-md-1">
+                <div class="form-group">
+                  <label> Edad</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="ejemplo: 25"
+                    name="edad"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Sexo</label>
+                  <select class="form-control" name="sexo">
+                    <option value="M" style="background-color: black">
+                      Masculino
+                    </option>
+                    <option value="F" style="background-color: black">
+                      Femenino
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button type="submit" class="btn accordion adjustments-line">
+                Guardar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

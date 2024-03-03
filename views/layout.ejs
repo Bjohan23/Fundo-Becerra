@@ -24,6 +24,7 @@
     />
     <!-- Iconos Nucleo -->
     <link href="/assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="/assets/css/botones.css" rel="stylesheet" />
     <!-- Archivos CSS -->
     <link href="/assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
     <!-- CSS solo para fines de demostración, no lo incluyas en tu proyecto -->
@@ -62,6 +63,14 @@
               </a>
             </li>
             <li>
+              <a href="/fTrabajadores">
+                <!-- icono de  trabajadores -->
+                <i class="tim-icons icon-badge"></i>
+                <p>Nuevo trabajador</p>
+              </a>
+            </li>
+
+            <li>
               <a href="/tabla">
                 <i class="tim-icons icon-bullet-list-67"></i>
 
@@ -69,9 +78,10 @@
               </a>
             </li>
             <li>
-              <a href="/icons">
-                <i class="tim-icons icon-atom"></i>
-                <p>Iconos</p>
+              <a href="/categorias">
+                <!-- icono de categorias  -->
+                <i class="tim-icons icon-tag"></i>
+                <p>Categorias</p>
               </a>
             </li>
             <li>
@@ -317,6 +327,11 @@
       </div>
     </div>
     <!--   Archivos JS Principales   -->
+
+    <!-- socket.io -->
+    <script src="/socket.io/socket.io.js" charset="utf-8"></script>
+    <script src="/assets/js/chat.js"></script>
+
     <script src="/assets/js/core/jquery.min.js"></script>
     <script src="/assets/js/core/popper.min.js"></script>
     <script src="/assets/js/core/bootstrap.min.js"></script>
@@ -332,6 +347,7 @@
     <script src="/assets/js/black-dashboard.min.js?v=1.0.0"></script>
     <!-- Métodos de DEMO de Black Dashboard, ¡no los incluyas en tu proyecto! -->
     <script src="/assets/demo/demo.js"></script>
+
     <style>
       .sidebar {
         /* background-image: linear-gradient(to top, #004f9e, #003a7c); */
