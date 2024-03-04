@@ -11,10 +11,14 @@ const {
   vistaEror,
   vistaUsuario,
   vistaFormTrabajadores,
-  vistaCategoria,
+  vistaCultivos,
   vistaTableCategorias,
 } = require("../controllers/PageControllers");
-const { rTrabajadores } = require("../controllers/registroControllers");
+const {
+  rTrabajadores,
+  rCultivos,
+  rCategorias,
+} = require("../controllers/registroControllers");
 const router = express.Router();
 router.use(morgan("dev"));
 router.use("views", express.static("views"));
@@ -24,8 +28,13 @@ router.get("/notificaciones", vistaNorificaciones);
 router.get("/user", vistaUsuario);
 router.get("/fTrabajadores", vistaFormTrabajadores);
 router.get("/categorias", vistaTableCategorias);
+router.get("/cultivos", vistaCultivos);
+
 // rutas para manegar registros
 router.post("/rTrabajadores", rTrabajadores);
+router.post("/rCultivos", rCultivos);
+router.post("/rCategoria", rCategorias);
+
 io.on("connection", (socket) => {
   console.log("Usuario conectado", socket.id);
   socket.on("disconnect", () => {

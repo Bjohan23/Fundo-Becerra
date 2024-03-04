@@ -3,8 +3,8 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Categorias 🏷️</h4>
-          <p class="category">Registrar categorias 😏</p>
+          <h4 class="card-title">Cultivos 🌱</h4>
+          <p class="category">Registrar Cultivos😁</p>
         </div>
 
         <div class="card-body">
@@ -45,16 +45,59 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form method="post" action="/rCategoria">
+                  <form method="post" action="/rCultivos">
                     <div class="form-group">
-                      <label>Nombre de la categoria</label>
+                      <label for="nombreProducto">Nombre del Producto</label>
                       <input
                         type="text"
                         class="form-control"
-                        name="nombre"
-                        placeholder="Nombre de la categoria"
+                        id="nombreProducto"
+                        name="nombreProducto"
+                        placeholder="Opcional"
                       />
                     </div>
+                    <div class="form-group">
+                      <label for="peso">Peso</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="peso"
+                        name="peso"
+                        placeholder="Peso del Producto o saco"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="cantidad">Cantidad</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="cantidad"
+                        name="cantidad"
+                        placeholder="Cantidad del Producto o saco"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="fecha">Fecha</label>
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="fecha"
+                        name="fecha"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="categoria">Categoría</label>
+                      <select class="form-control" id="select" name="categoria">
+                        <option value="">Selecciona una categoría</option>
+                        <!-- Aquí puedes cargar dinámicamente las opciones de categoría desde la base de datos -->
+                        <% categorias.forEach(categoria => { %>
+                        <option value="<%= categoria.id %>" class="">
+                          <%= categoria.nombre %>
+                        </option>
+                        <% }); %>
+                      </select>
+                    </div>
+                    <!-- <button type="submit" class="btn btn-primary">Registrar Cultivo</button> -->
                     <div class="modal-footer">
                       <button
                         type="button"
@@ -79,19 +122,29 @@
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Nombre</th>
+                  <th scope="col">Categoría ID</th>
+                  <th scope="col">Peso</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Fecha</th>
                   <th scope="col">Editar</th>
                   <th scope="col">Borrar</th>
                 </tr>
               </thead>
-              <% categorias.forEach((categorias)=>{ %>
               <tbody>
+                <% cultivos.forEach((cultivo) => { %>
                 <tr>
                   <th scope="row" style="color: aliceblue">
-                    <%= categorias.id %>
+                    <%= cultivo.id %>
                   </th>
-                  <td><%= categorias.nombre %></td>
-                  <!-- <td><%= categorias.imagen %></td> -->
+                  <td>
+                    <% categorias.forEach(categoria => { %> <%
+                    if(cultivo.categoria_id == categoria.id) { %> <%=
+                    categoria.nombre %> <% } %> <% }); %>
+                  </td>
+
+                  <td><%= cultivo.peso %></td>
+                  <td><%= cultivo.cantidad %></td>
+                  <td><%= new Date(cultivo.fecha).toLocaleDateString() %></td>
                   <td>
                     <a href="#" class="btn btn-success btn-icon btn-sm">
                       <i class="fa fa-edit"></i>
@@ -103,7 +156,6 @@
                     </a>
                   </td>
                 </tr>
-
                 <% }) %>
               </tbody>
             </table>

@@ -10,7 +10,6 @@ const vistaTable = function (req, res) {
     // renderizamos la vista y le pasamos los datos de la consulta
     console.log(trabajadores);
     res.render("tables", { trabajadores: trabajadores });
-
     //   res.json(trabajadores);
   });
   // res.render("tables");
@@ -25,6 +24,19 @@ const vistaTableCategorias = function (req, res) {
   });
 };
 
+const vistaCultivos = (req, res) => {
+  db.query("SELECT * FROM cultivo", (error, cultivos, fields) => {
+    if (error) throw error;
+
+    db.query("SELECT * FROM categoria", (error, categorias, fields) => {
+      if (error) throw error;
+
+      // renderizamos la vista y le pasamos los datos de la consulta
+      res.render("cultivos", { cultivos: cultivos, categorias: categorias });
+      console.log(cultivos);
+    });
+  });
+};
 const vistaNorificaciones = function (req, res) {
   res.render("notificaciones");
 };
@@ -40,9 +52,6 @@ const vistaEror = function (req, res) {
 const vistaFormTrabajadores = (req, res) => {
   res.render("fTrabajadores");
 };
-// const vistaCategoria = (req, res) => {
-//   res.render("categorias");
-// };
 
 module.exports = {
   vistaPrincipal,
@@ -52,4 +61,5 @@ module.exports = {
   vistaUsuario,
   vistaFormTrabajadores,
   vistaTableCategorias,
+  vistaCultivos,
 };
