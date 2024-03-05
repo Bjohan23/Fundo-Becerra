@@ -47,6 +47,12 @@ const vistaUsuario = (req, res) => {
 const vistaFormTrabajadores = (req, res) => {
   res.render("fTrabajadores");
 };
+const vistaCultivosApi = (req, res) => {
+  db.query("SELECT * FROM cultivo", (err, result) => {
+    if (err) throw err;
+    res.send(result);
+  });
+};
 
 const vistaEror = function (req, res) {
   res.status(404).render("404");
@@ -110,4 +116,5 @@ module.exports = {
   vistaCultivos,
   vistaEditCategoria,
   vistaEditCultivo,
+  vistaCultivosApi,
 };

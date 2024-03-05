@@ -4,12 +4,14 @@ const socket = require("./socket");
 const path = require("path");
 const expressLayouts = require("express-ejs-layouts");
 const app = express();
+const bodyParser = require("body-parser");
 
 app.set("view engine", "ejs");
 app.use(expressLayouts);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(bodyParser.json());
 
 const server = http.createServer(app);
 socket.init(server); // Inicializa Socket.IO

@@ -49,13 +49,14 @@
         </div>
         <div class="card-body">
           <div class="chart-area">
-            <canvas id="chartBig1"></canvas>
+            <!-- <canvas id="chartLinePurple"></canvas> -->
+            <canvas id="grafico"></canvas>
           </div>
         </div>
       </div>
     </div>
   </div>
-
+  <!--
   <div class="row">
     <div class="col-lg-4">
       <div class="card card-chart">
@@ -97,13 +98,13 @@
         </div>
         <div class="card-body">
           <div class="chart-area">
-            <!-- <canvas id="chartLineGreen"></canvas> -->
+            <canvas id="chartLineGreen"></canvas>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!--
+  
   <div class="row">
     <div class="col-lg-6 col-md-12">
       <div class="card card-tasks">
@@ -407,3 +408,60 @@
   </div>
    -->
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // consumimos esta api : http://localhost:3000/api/cultivos
+  // para obtener los datos de la producción
+  // de los cultivos
+  // y mostrarlos en el gráfico
+  // de barras
+  const url = "http://localhost:3000/api/cultivos";
+  const data = [];
+  const labels = [];
+  fetch(url)
+    .then((response) => response.json())
+    .then((response) => {
+      response.forEach((element) => {
+        data.push(element.cantidad);
+        labels.push(element.peso);
+      });
+      const ctx = document.getElementById("grafico").getContext("2d");
+      const myChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: "cantidad",
+              data: [12, 10, 5, 2, 20, 30],
+              backgroundColor: [
+                "rgba(255, 99, 132, 0.2)",
+                "rgba(54, 162, 235, 0.2)",
+                "rgba(255, 206, 86, 0.2)",
+                "rgba(75, 192, 192, 0.2)",
+                "rgba(153, 102, 255, 0.2)",
+                "rgba(255, 159, 64, 0.2)",
+              ],
+              borderColor: [
+                "rgba(255, 99, 132, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 86, 1)",
+                "rgba(75, 192, 192, 1)",
+                "rgba(153, 102, 255, 1)",
+                "rgba(255, 159, 64, 1)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+    });
+  const buttons = document.querySelectorAll(".btn-group-toggle label");
+</script>

@@ -15,6 +15,7 @@ const {
   vistaTableCategorias,
   vistaEditCategoria,
   vistaEditCultivo,
+  vistaCultivosApi,
 } = require("../controllers/PageControllers");
 const {
   rTrabajadores,
@@ -30,6 +31,7 @@ const {
   actualizarCultivo,
 } = require("../controllers/actualizarControllers");
 const router = express.Router();
+router.get("/api/cultivos", vistaCultivosApi);
 router.use(morgan("dev"));
 router.use("views", express.static("views"));
 router.get("/", vistaPrincipal);
