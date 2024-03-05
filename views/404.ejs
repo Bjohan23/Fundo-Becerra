@@ -29,7 +29,14 @@
           <div class="screen_out">
             <div class="screen_out1">
               <div class="screen">
-                <span class="notfound_text"> NOT FOUND</span>
+                  <span class="notfound_text">
+                    <% if(typeof texto !== 'undefined'){ %>
+                      <%= texto %>
+                    <% } else { %>
+                      Pagina no encontrada
+                    <% } %>
+                  </span>
+                
               </div>
             </div>
           </div>

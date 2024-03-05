@@ -13,12 +13,22 @@ const {
   vistaFormTrabajadores,
   vistaCultivos,
   vistaTableCategorias,
+  vistaEditCategoria,
+  vistaEditCultivo,
 } = require("../controllers/PageControllers");
 const {
   rTrabajadores,
   rCultivos,
   rCategorias,
 } = require("../controllers/registroControllers");
+const {
+  eliminarCategoria,
+  eliminarCultivos,
+} = require("../controllers/eliminarControllers");
+const {
+  actualizarCategoria,
+  actualizarCultivo,
+} = require("../controllers/actualizarControllers");
 const router = express.Router();
 router.use(morgan("dev"));
 router.use("views", express.static("views"));
@@ -29,11 +39,22 @@ router.get("/user", vistaUsuario);
 router.get("/fTrabajadores", vistaFormTrabajadores);
 router.get("/categorias", vistaTableCategorias);
 router.get("/cultivos", vistaCultivos);
+router.get("/editarCategoria/:id", vistaEditCategoria);
+router.get("/editarCultivo/:id", vistaEditCultivo);
 
 // rutas para manegar registros
 router.post("/rTrabajadores", rTrabajadores);
 router.post("/rCultivos", rCultivos);
 router.post("/rCategoria", rCategorias);
+// rutas para editar registros
+router.post("/eTrabajadores", rTrabajadores);
+// router.post("/eCultivos", actualizarCultivo);
+router.post("/eCultivos", actualizarCultivo);
+router.post("/eCategoria", actualizarCategoria);
+// rutas para eliminar registros
+// router.post("/dTrabajadores", eliminarTrabajadores);
+router.post("/eliminarCultivos/:id", eliminarCultivos);
+router.post("/eliminarCategoria/:id", eliminarCategoria);
 
 io.on("connection", (socket) => {
   console.log("Usuario conectado", socket.id);

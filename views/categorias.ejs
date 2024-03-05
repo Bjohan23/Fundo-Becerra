@@ -44,6 +44,7 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
+
                 <div class="modal-body">
                   <form method="post" action="/rCategoria">
                     <div class="form-group">
@@ -93,14 +94,25 @@
                   <td><%= categorias.nombre %></td>
                   <!-- <td><%= categorias.imagen %></td> -->
                   <td>
-                    <a href="#" class="btn btn-success btn-icon btn-sm">
+                    <a
+                      href="/editarCategoria/<%= categorias.id %>"
+                      class="btn btn-success btn-icon btn-sm"
+                    >
                       <i class="fa fa-edit"></i>
                     </a>
                   </td>
                   <td>
-                    <a href="#" class="btn btn-danger btn-icon btn-sm">
-                      <i class="fa fa-trash"></i>
-                    </a>
+                    <form
+                      method="post"
+                      action="/eliminarCategoria/<%= categorias.id %>"
+                    >
+                      <button
+                        type="submit"
+                        class="btn btn-danger btn-icon btn-sm eliminar-categoria"
+                      >
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </form>
                   </td>
                 </tr>
 
@@ -108,6 +120,7 @@
               </tbody>
             </table>
           </div>
+          <!--  -->
         </div>
       </div>
     </div>

@@ -40,17 +40,63 @@ const vistaCultivos = (req, res) => {
 const vistaNorificaciones = function (req, res) {
   res.render("notificaciones");
 };
-
 const vistaUsuario = (req, res) => {
   res.render("user");
+};
+
+const vistaFormTrabajadores = (req, res) => {
+  res.render("fTrabajadores");
 };
 
 const vistaEror = function (req, res) {
   res.status(404).render("404");
 };
+// editar
+const vistaEditCategoria = (req, res) => {
+  const { id } = req.params;
+  // console.log("el id es : ", id);
+  db.query(
+    "SELECT * FROM categoria WHERE id = ?",
+    [id],
+    (error, categoria, fields) => {
+      if (error) throw error;
+      if (categoria.length > 0) {
+        res.render("categoria_edit", { categoria: categoria[0] });
+      } else {
+        res.status(404).render("404", { texto: "Categoría no encontrada" });
+      }
+    }
+  );
+};
 
-const vistaFormTrabajadores = (req, res) => {
-  res.render("fTrabajadores");
+const vistaEditCultivo = (req, res) => {
+  const { id } = req.params;
+  // Consulta a la base de datos para obtener el cultivo con el id proporcionado
+  db.query(
+    "SELECT * FROM cultivo WHERE id = ?",
+    [id],
+    (error, cultivo, fields) => {
+      if (error) throw error;
+      // Si se encuentra el cultivo
+      if (cultivo.length > 0) {
+        // Consulta a la base de datos para obtener todas las categorías
+        db.query("SELECT * FROM categoria ", (error, categoria, fields) => {
+          if (error) throw error;
+          // Formatea la fecha a YYYY-MM-DD
+          let fecha = cultivo[0].fecha.toISOString().split("T")[0];
+          // Renderiza la vista "cultivo_edit" y pasa los datos del cultivo y las categorías
+          res.render("cultivo_edit", {
+            cultivo: { ...cultivo[0], fecha: fecha },
+            categoria: categoria,
+          });
+          console.log(cultivo);
+        });
+      } else {
+        // Si no se encuentra el cultivo, renderiza la página 404
+        res.status(404).render("404", { texto: "Cultivo no encontrado" });
+      }
+    }
+  );
 };
 
 module.exports = {
@@ -62,4 +108,6 @@ module.exports = {
   vistaFormTrabajadores,
   vistaTableCategorias,
   vistaCultivos,
+  vistaEditCategoria,
+  vistaEditCultivo,
 };

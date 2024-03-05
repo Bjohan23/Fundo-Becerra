@@ -146,14 +146,25 @@
                   <td><%= cultivo.cantidad %></td>
                   <td><%= new Date(cultivo.fecha).toLocaleDateString() %></td>
                   <td>
-                    <a href="#" class="btn btn-success btn-icon btn-sm">
+                    <a
+                      href="/editarCultivo/<%= cultivo.id  %>"
+                      class="btn btn-success btn-icon btn-sm"
+                    >
                       <i class="fa fa-edit"></i>
                     </a>
                   </td>
                   <td>
-                    <a href="#" class="btn btn-danger btn-icon btn-sm">
-                      <i class="fa fa-trash"></i>
-                    </a>
+                    <form
+                      action="/eliminarCultivos/<%=cultivo.id %>"
+                      method="post"
+                    >
+                      <button
+                        type="submit"
+                        class="btn btn-danger btn-icon btn-sm eliminar-categoria"
+                      >
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </form>
                   </td>
                 </tr>
                 <% }) %>

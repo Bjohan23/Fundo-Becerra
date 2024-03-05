@@ -1,0 +1,41 @@
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Editar🏷️</h4>
+          <p class="category">Editar categorias 🫠</p>
+        </div>
+
+        <div class="card-body">
+          <!-- editar categoria -->
+          <form method="post" action="/eCategoria">
+            <input name="id" type="hidden" value="<%= categoria.id %>" />
+            <div class="form-group">
+              <label>Nombre de la categoria</label>
+              <input
+                type="text"
+                class="form-control"
+                name="nombre"
+                placeholder="Nombre de la categoria"
+                value="<%= categoria.nombre %>"
+              />
+            </div>
+            <div class="modal-footer">
+              <a
+                class="btn btn-secondary"
+                href="/categorias"
+                data-dismiss="modal"
+              >
+                Cerrar
+              </a>
+              <button type="submit" class="btn btn-primary">
+                Guardar Producto
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
