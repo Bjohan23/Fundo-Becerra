@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 const server = http.createServer(app);
 socket.init(server); // Inicializa Socket.IO
 
-// Requiere el archivo de rutas después de inicializar Socket.IO
+// Rutas para la web
 app.use("/", require("./routes/router"));
 
 server.listen(3000, () => {

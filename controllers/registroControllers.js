@@ -19,7 +19,7 @@ const rTrabajadores = (req, res) => {
         celular,
         dni,
       });
-      res.redirect("/fTrabajadores");
+      res.redirect("/tabla");
     }
   );
 };
@@ -56,4 +56,38 @@ const rCategorias = (req, res) => {
   );
 };
 
-module.exports = { rTrabajadores, rCultivos, rCategorias };
+// const rHorasTrabajadas = (id, horas, fecha, callback) => {
+//   db.query(
+//     "INSERT INTO RegistroHoras (ID_Registro, Horas, Fecha) VALUES (?, ?, ?)",
+//     [id, horas, fecha],
+//     (error, result) => {
+//       if (error) {
+//         console.error(error);
+//         callback(error);
+//       } else {
+//         callback(null, result);
+//       }
+//     }
+//   );
+//   redirect("/mostrarCalendario/:id");
+// };
+const rHorasTrabajadas = (req, res) => {
+  const { horas, fecha } = req.body;
+  const id = req.params.id;
+  console.log("datos", id, horas, fecha);
+  db.query(
+    "INSERT INTO RegistroHoras (ID_Trabajador, Horas, Fecha) VALUES (?, ?, ?)",
+    [id, horas, fecha],
+    (error, result) => {
+      if (error) {
+        console.error(error);
+        res.status(500).send("Error al insertar las horas trabajadas");
+      } else {
+        console.log("Horas trabajadas insertadas correctamente:", result);
+        res.redirect(`/mostraCalendario/${id}`);
+      }
+    }
+  );
+};
+
+module.exports = { rTrabajadores, rCultivos, rCategorias, rHorasTrabajadas };

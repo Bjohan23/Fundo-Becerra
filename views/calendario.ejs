@@ -2,12 +2,14 @@
   <!-- link con icono de + -->
   <a
     href="#"
-    class="btn btn-primary btn-icon btn-sm"
+    class="btn btn-primary"
     data-toggle="modal"
     data-target="#exampleModalCenter"
   >
+    Nuevo
     <i class="fa fa-plus"></i>
   </a>
+  <!-- <strong style="color: black"></strong> -->
   <!-- Modal -->
   <div
     class="modal fade"
@@ -20,6 +22,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content" id="modal-content">
         <div class="modal-header">
+          <br />
           <button
             type="button"
             class="close"
@@ -31,14 +34,26 @@
         </div>
 
         <div class="modal-body">
-          <form method="post" action="/rHorasTrabajadas/<">
+          <form method="post" action="/rHorasTrabajadas/<%= idTrabajador %>">
             <div class="form-group">
-              <label> Horas Trabajadas</label>
+              <label>
+                <strong style="color: aliceblue"
+                  >iD : <%= idTrabajador %>
+                </strong>
+                <br />
+                Horas Trabajadas</label
+              >
               <!-- mostramos una lista : medio dia , dia completo ,solo tarde -->
               <select class="form-control" name="horas">
-                <option value="4">Medio dia</option>
-                <option value="8">Dia completo</option>
-                <option value="4">Solo tarde</option>
+                <option style="background-color: black" value="5">
+                  Medio dia
+                </option>
+                <option style="background-color: black" value="8">
+                  Dia completo
+                </option>
+                <option style="background-color: black" value="3">
+                  Solo tarde
+                </option>
               </select>
             </div>
             <!-- fecha -->
@@ -94,9 +109,12 @@
                  </div>
                  <br>
                  <div class="fc-horas-trabajadas">${info.event.extendedProps.horas } horas</div>`,
+
                 };
+
       }
     });
+
     calendar.render();
   });
 </script>

@@ -1,30 +1,50 @@
 async function getData() {
-  const response = await fetch("http://localhost:3000/api/cultivos");
+  const response = await fetch("https://api-fundo.onrender.com/api/cultivos");
   const data = await response.json();
   return data;
 }
 
 getData().then((data) => {
-  // Ordena los datos por fecha
-  data.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+  const groupedData = data.reduce((accumulator, current) => {
+    const date = current.fecha;
+    if (!accumulator[date]) {
+      accumulator[date] = {
+        fecha: date,
+        peso: 0,
+        cantidad: 0,
+      };
+    }
+    accumulator[date].peso += current.peso;
+    accumulator[date].cantidad += current.cantidad;
+    return accumulator;
+  }, {});
 
-  const labels = data.map((item) => {
-    const date = new Date(item.fecha);
-    console.log("fecha seteada : ", date.toLocaleDateString());
-    return date.toLocaleDateString();
-  });
-  const pesoData = data.map((item) => item.peso);
-  const cantidadData = data.map((item) => item.cantidad);
+  const aggregatedData = Object.values(groupedData);
+
+  aggregatedData.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+
+  // const labels = aggregatedData.map((item) => {
+  //   const date = new Date(item.fecha);
+  //   return date.toLocaleDateString();
+  // });
+  const labels = aggregatedData.map((item) => {
+    // Utilizamos las fechas sin procesar directamente
+    return item.fecha;
+});
+
+
+  const pesoData = aggregatedData.map((item) => item.peso);
+  const cantidadData = aggregatedData.map((item) => item.cantidad);
+
   var ctx = document.getElementById("grafico").getContext("2d");
 
   var gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
-
   gradientStroke.addColorStop(1, "rgba(72,72,176,0.2)");
   gradientStroke.addColorStop(0.2, "rgba(72,72,176,0.0)");
-  gradientStroke.addColorStop(0, "rgba(119,52,169,0)"); //purple colors
+  gradientStroke.addColorStop(0, "rgba(119,52,169,0)");
 
   var data = {
-    labels: labels, // Usa las etiquetas de tus datos
+    labels: labels,
     datasets: [
       {
         label: "Peso Kg",
@@ -41,7 +61,7 @@ getData().then((data) => {
         pointHoverRadius: 4,
         pointHoverBorderWidth: 15,
         pointRadius: 4,
-        data: pesoData, // Usa los datos de peso
+        data: pesoData,
       },
       {
         label: "Cantidad",
@@ -58,16 +78,14 @@ getData().then((data) => {
         pointHoverRadius: 4,
         pointHoverBorderWidth: 15,
         pointRadius: 4,
-        data: cantidadData, // Usa los datos de cantidad
+        data: cantidadData,
       },
     ],
   };
 
   var gradientChartOptionsConfigurationWithTooltipPurple = {
     maintainAspectRatio: false,
-    legend: {
-      display: false,
-    },
+    legend: { display: false },
     tooltips: {
       backgroundColor: "#f5f5f5",
       titleFontColor: "#333",

@@ -7,6 +7,10 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css"
+    />
+    <link
       rel="apple-touch-icon"
       sizes="76x76"
       href="/assets/img/apple-icon.png"
@@ -61,25 +65,25 @@
                 <p>Panel</p>
               </a>
             </li>
-            <li>
+            <!-- <li>
               <a href="/user">
                 <i class="tim-icons icon-single-02"></i>
                 <p>Perfil Usuario</p>
               </a>
-            </li>
-            <li>
+            </li> -->
+            <!-- <li>
               <a href="/fTrabajadores">
-                <!-- icono de  trabajadores -->
                 <i class="tim-icons icon-badge"></i>
                 <p>Nuevo trabajador</p>
               </a>
-            </li>
+            </li> -->
 
             <li>
               <a href="/tabla">
-                <i class="tim-icons icon-bullet-list-67"></i>
+                <!-- persona -->
+                <i class="tim-icons icon-single-02"></i>
 
-                <p>Tablas</p>
+                <p>Trabajadores</p>
               </a>
             </li>
             <li>
@@ -355,6 +359,10 @@
     <!-- Coloca esta etiqueta en tu head o justo antes de cerrar el body. -->
     <!-- Gráfico JS -->
     <script src="/assets/js/plugins/chartjs.min.js"></script>
+    <!-- calendario  -->
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
     <!-- <script src="/assets/js/plugins/modal.js"></script> -->
     <!--  Plugin de Notificaciones    -->
     <script src="/assets/js/plugins/bootstrap-notify.js"></script>
@@ -362,6 +370,7 @@
     <script src="/assets/js/black-dashboard.min.js?v=1.0.0"></script>
     <!-- Métodos de DEMO de Black Dashboard, ¡no los incluyas en tu proyecto! -->
     <script src="/assets/demo/demo.js"></script>
+    <script src="/assets/js/calendario.js"></script>
 
     <style>
       .sidebar {

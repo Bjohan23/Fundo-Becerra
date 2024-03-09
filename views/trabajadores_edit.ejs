@@ -1,0 +1,112 @@
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Editar🏷️</h4>
+          <p class="category">Editar Trabajador🫠</p>
+        </div>
+
+        <div class="card-body">
+          <!-- editar Trabajadores-->
+          <form action="/aTrabajadores" method="post">
+            <input name="id" type="hidden" value="<%= trabajador.id %>" />
+            <strong style="color: aliceblue">id :<%= trabajador.id %> </strong>
+            <div class="row">
+              <div class="col-md-6 pr-md-1">
+                <div class="form-group">
+                  <label>Nombres</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nombres"
+                    name="nombres"
+                    value="<%= trabajador.nombres %>"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6 pl-md-1">
+                <div class="form-group">
+                  <label>Apellidos</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Apellidos"
+                    name="apellidos"
+                    value="<%= trabajador.apellidos %>"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5 p-md-1">
+                <div class="form-group">
+                  <label>Celular</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Celular"
+                    name="celular"
+                    value="<%= trabajador.celular %>"
+                  />
+                </div>
+              </div>
+              <div class="col-md-3 px-md-1">
+                <div class="form-group">
+                  <label>DNI</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="DNI"
+                    name="dni"
+                    value="<%= trabajador.dni %>"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4 pl-md-1">
+                <div class="form-group">
+                  <label> Edad</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="ejemplo: 25"
+                    name="edad"
+                    value="<%= trabajador.edad %>"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Sexo</label>
+                    <select class="form-control" name="sexo">
+                        <option value="M" <%= trabajador.sexo == 'M' ? 'selected' : '' %>>
+                        Masculino
+                        </option>
+                        <option value="F" <%= trabajador.sexo == 'F' ? 'selected' : '' %>>
+                        Femenino
+                        </option>
+                    </select>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button type="submit" class="btn accordion adjustments-line">
+                Guardar
+              </button>
+              <!-- link de cancelar  -->
+                <a href="/tabla" class="btn btn-danger ">
+                    cancelar
+                    <i class="fa fa-ban"></i>
+                    
+                </a>
+                
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

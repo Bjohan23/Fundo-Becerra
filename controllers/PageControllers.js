@@ -1,3 +1,4 @@
+const con = require("../db/db");
 const db = require("../db/db");
 
 const vistaPrincipal = function (req, res) {
@@ -8,7 +9,7 @@ const vistaTable = function (req, res) {
   db.query("SELECT * FROM trabajadores", (error, trabajadores, fields) => {
     if (error) throw error;
     // renderizamos la vista y le pasamos los datos de la consulta
-    console.log(trabajadores);
+    // console.log(trabajadores);
     res.render("tables", { trabajadores: trabajadores });
     //   res.json(trabajadores);
   });
@@ -46,12 +47,6 @@ const vistaUsuario = (req, res) => {
 
 const vistaFormTrabajadores = (req, res) => {
   res.render("fTrabajadores");
-};
-const vistaCultivosApi = (req, res) => {
-  db.query("SELECT * FROM cultivo", (err, result) => {
-    if (err) throw err;
-    res.send(result);
-  });
 };
 
 const vistaEror = function (req, res) {
@@ -104,6 +99,22 @@ const vistaEditCultivo = (req, res) => {
     }
   );
 };
+const vistaEditTrabajadores = (req, res) => {
+  const { id } = req.params;
+  db.query(
+    "SELECT * FROM trabajadores WHERE id = ?",
+    [id],
+    (error, trabajador, fields) => {
+      if (error) throw error;
+      if (trabajador.length > 0) {
+        res.render("trabajadores_edit", { trabajador: trabajador[0] });
+        console.log(trabajador);
+      } else {
+        res.status(404).render("404", { texto: "Trabajador no encontrado" });
+      }
+    }
+  );
+};
 
 module.exports = {
   vistaPrincipal,
@@ -116,5 +127,5 @@ module.exports = {
   vistaCultivos,
   vistaEditCategoria,
   vistaEditCultivo,
-  vistaCultivosApi,
+  vistaEditTrabajadores,
 };

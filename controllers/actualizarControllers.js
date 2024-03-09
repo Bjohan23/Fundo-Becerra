@@ -40,4 +40,35 @@ const actualizarCategoria = (req, res) => {
     }
   );
 };
-module.exports = { actualizarCultivo, actualizarCategoria };
+const actualizarTrabajadores = (req, res) => {
+  const { id, nombres, apellidos, dni, celular, edad, sexo } = req.body;
+
+  console.log(
+    "Datos a actualizar:",
+    id,
+    nombres,
+    apellidos,
+    dni,
+    celular,
+    edad,
+    sexo
+  );
+  db.query(
+    "UPDATE trabajadores SET nombres = ?, apellidos = ?,celular = ?, dni= ?, edad = ? ,sexo = ? WHERE id = ?",
+    [ nombres, apellidos, celular, dni, edad, sexo,id],
+    (error, result) => {
+      if (error) {
+        res.status(500).send("Error al actualizar el trabajador");
+      } else {
+        // console.log("Trabajador actualizado correctamente:", result);
+        res.redirect("/tabla");
+      }
+    }
+  );
+};
+
+module.exports = {
+  actualizarCultivo,
+  actualizarCategoria,
+  actualizarTrabajadores,
+};
