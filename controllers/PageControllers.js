@@ -1,4 +1,3 @@
-const con = require("../db/db");
 const db = require("../db/db");
 
 const vistaPrincipal = function (req, res) {
