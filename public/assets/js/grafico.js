@@ -15,7 +15,7 @@ getData().then((data) => {
 
     // Filtrar los datos según la categoría seleccionada
     const filteredData = data.filter(
-      (item) => item.categoria_id == categoriaSeleccionada
+      (item) => item.categoria === categoriaSeleccionada
     );
 
     // Procesar los datos filtrados de la misma manera que lo hacías anteriormente
