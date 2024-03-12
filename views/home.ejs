@@ -384,25 +384,3 @@
   </div> -->
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", (event) => {
-    async function getCategorias() {
-      const response = await fetch(
-        "https://api-fundo.vercel.app/api/categorias"
-      );
-      const data = await response.json();
-      console.log("datos:", data);
-      return data;
-    }
-
-    getCategorias().then((categorias) => {
-      const container = document.querySelector(".btn-group-toggle");
-      categorias.forEach((categoria) => {
-        const button = document.createElement("button");
-        button.classList.add("btn", "btn-secondary");
-        button.textContent = categoria.nombre;
-        container.appendChild(button);
-      });
-    });
-  });
-</script>
