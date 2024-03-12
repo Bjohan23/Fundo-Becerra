@@ -30,8 +30,7 @@ getData().then((data) => {
   const labels = aggregatedData.map((item) => {
     // Utilizamos las fechas sin procesar directamente
     return item.fecha;
-});
-
+  });
 
   const pesoData = aggregatedData.map((item) => item.peso);
   const cantidadData = aggregatedData.map((item) => item.cantidad);

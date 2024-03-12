@@ -9,41 +9,23 @@
               <h2 class="card-title">Producción</h2>
             </div>
             <div class="col-sm-6">
-              <!-- <div
+              <div
                 class="btn-group btn-group-toggle float-right"
                 data-toggle="buttons"
               >
-                <label class="btn btn-sm btn-primary btn-simple active" id="0">
-                  <input type="radio" name="options" checked />
-                  <span
-                    class="d-none d-sm-block d-md-block d-lg-block d-xl-block"
-                    >Cuentas</span
-                  >
-                  <span class="d-block d-sm-none">
-                    <i class="tim-icons icon-single-02"></i>
-                  </span>
-                </label>
-                <label class="btn btn-sm btn-primary btn-simple" id="1">
-                  <input type="radio" class="d-none d-sm-none" name="options" />
-                  <span
-                    class="d-none d-sm-block d-md-block d-lg-block d-xl-block"
-                    >Compras</span
-                  >
-                  <span class="d-block d-sm-none">
-                    <i class="tim-icons icon-gift-2"></i>
-                  </span>
-                </label>
-                <label class="btn btn-sm btn-primary btn-simple" id="2">
-                  <input type="radio" class="d-none" name="options" />
-                  <span
-                    class="d-none d-sm-block d-md-block d-lg-block d-xl-block"
-                    >Sesiones</span
-                  >
-                  <span class="d-block d-sm-none">
-                    <i class="tim-icons icon-tap-02"></i>
-                  </span>
-                </label>
-              </div> -->
+                <div class="form-group">
+                  <label for="categoria">Categoría</label>
+                  <select class="form-control" id="select" name="categoria">
+                    <option value="">Selecciona una categoría</option>
+                    <!-- Aquí puedes cargar dinámicamente las opciones de categoría desde la base de datos -->
+                    <% categorias.forEach(categoria => { %>
+                    <option value="<%= categoria.id %>" class="">
+                      <%= categoria.nombre %>
+                    </option>
+                    <% }); %>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -407,3 +389,25 @@
   </div> -->
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    async function getCategorias() {
+      const response = await fetch(
+        "https://api-fundo.vercel.app/api/categorias"
+      );
+      const data = await response.json();
+      console.log("datos:", data);
+      return data;
+    }
+
+    getCategorias().then((categorias) => {
+      const container = document.querySelector(".btn-group-toggle");
+      categorias.forEach((categoria) => {
+        const button = document.createElement("button");
+        button.classList.add("btn", "btn-secondary");
+        button.textContent = categoria.nombre;
+        container.appendChild(button);
+      });
+    });
+  });
+</script>

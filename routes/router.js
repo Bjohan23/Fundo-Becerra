@@ -10,7 +10,6 @@ const {
   vistaNorificaciones,
   vistaEror,
   vistaUsuario,
-  vistaFormTrabajadores,
   vistaCultivos,
   vistaTableCategorias,
   vistaEditCategoria,
@@ -42,7 +41,6 @@ router.get("/", vistaPrincipal);
 router.get("/tabla", vistaTable);
 router.get("/notificaciones", vistaNorificaciones);
 router.get("/user", vistaUsuario);
-router.get("/fTrabajadores", vistaFormTrabajadores);
 router.get("/categorias", vistaTableCategorias);
 router.get("/cultivos", vistaCultivos);
 router.get("/editarCategoria/:id", vistaEditCategoria);

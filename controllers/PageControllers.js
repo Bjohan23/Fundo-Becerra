@@ -2,7 +2,13 @@ const con = require("../db/db");
 const db = require("../db/db");
 
 const vistaPrincipal = function (req, res) {
-  res.render("home");
+  // hacemos la consulta a la base de datos
+  db.query("SELECT * FROM categoria", (error, categorias, fields) => {
+    if (error) throw error;
+    // renderizamos la vista y le pasamos los datos de la consulta
+    res.render("home", { categorias: categorias });
+    console.log(categorias);
+  });
 };
 const vistaTable = function (req, res) {
   // hacemos la consulta a la base de datos
@@ -43,10 +49,6 @@ const vistaNorificaciones = function (req, res) {
 };
 const vistaUsuario = (req, res) => {
   res.render("user");
-};
-
-const vistaFormTrabajadores = (req, res) => {
-  res.render("fTrabajadores");
 };
 
 const vistaEror = function (req, res) {
@@ -122,7 +124,6 @@ module.exports = {
   vistaNorificaciones,
   vistaEror,
   vistaUsuario,
-  vistaFormTrabajadores,
   vistaTableCategorias,
   vistaCultivos,
   vistaEditCategoria,
