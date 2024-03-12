@@ -147,7 +147,8 @@
                   <span class="navbar-toggler-bar bar3"></span>
                 </button>
               </div>
-              <a class="navbar-brand" href="/">Tablero 
+              <a class="navbar-brand" href="/"
+                >Tablero
                 <strong id="numUsers"></strong>
               </a>
             </div>
@@ -234,8 +235,11 @@
                       <a href="#" class="nav-item dropdown-item">Perfil</a>
                     </li>
                     <li class="nav-link">
-                      <a href="#" class="nav-item dropdown-item"
-                        >Configuración</a
+                      <a
+                        href="#"
+                        class="nav-item dropdown-item"
+                        id="fullscreenButton"
+                        >Pantalla completa</a
                       >
                     </li>
                     <li class="dropdown-divider"></li>
@@ -313,7 +317,7 @@
       </div>
     </div>
     <div class="fixed-plugin">
-      <div class="dropdown show-dropdown">
+      <!-- <div class="dropdown show-dropdown">
         <a href="#" data-toggle="dropdown">
           <i class="fa fa-cog fa-2x"> </i>
         </a>
@@ -342,21 +346,12 @@
             <span class="color-label">MODO OSCURO</span>
           </li>
         </ul>
-      </div>
+      </div> -->
     </div>
     <!--   Archivos JS Principales   -->
 
     <!-- socket.io -->
     <script src="/socket.io/socket.io.js" charset="utf-8"></script>
-    <script>
-      const socket = io();
-      socket.on("numUsers", function (numUsers) {
-        // Actualiza la interfaz de usuario con el número de usuarios conectados
-        document.querySelector("#numUsers").textContent = "🟢" + numUsers;
-      });
-    </script>
-
-    <script src="/assets/js/chat.js"></script>
     <script src="/assets/js/chat.js"></script>
     <script src="/assets/js/grafico.js"></script>
 
@@ -371,7 +366,7 @@
     <script src="/assets/js/plugins/chartjs.min.js"></script>
     <!-- calendario  -->
     <!-- JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
     <!-- <script src="/assets/js/plugins/modal.js"></script> -->
     <!--  Plugin de Notificaciones    -->
@@ -514,19 +509,6 @@
         });
       });
     </script>
-    <script>
-      $(document).ready(function () {
-        // El cuerpo del método JavaScript se puede encontrar en assets/js/demos.js
-        demo.initDashboardPageCharts();
-      });
-    </script>
     <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
-    <script>
-      window.TrackJS &&
-        TrackJS.install({
-          token: "ee6fab19c5a04ac1a32a645abde4613a",
-          application: "black-dashboard-free",
-        });
-    </script>
   </body>
 </html>
