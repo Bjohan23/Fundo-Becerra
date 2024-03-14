@@ -44,10 +44,14 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form action="/rtareas" method="post">
+                  <form action="/rTareas" method="post">
                     <div class="form-group">
-                      <label for="categoria">Trabajador</label>
-                      <select class="form-control" id="select" name="categoria">
+                      <label for="trabajador">Trabajador</label>
+                      <select
+                        class="form-control"
+                        id="select"
+                        name="trabajador"
+                      >
                         <option value="">Selecciona un trabajador</option>
                         <!-- Aquí puedes cargar dinámicamente las opciones de categoría desde la base de datos -->
                         <% trabajadores.forEach(trabajador => { %>
@@ -91,9 +95,7 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Trabajador</th>
-                  <th scope="col">Tarea</th>
-                  <!-- <th scope="col">Editar</th>
-                  <th scope="col">Borrar</th> -->
+                  <th scope="col">Descripcion de la Tarea</th>
                   <th scope="col">Echo</th>
                 </tr>
               </thead>
@@ -107,29 +109,12 @@
                     trabajador.nombres %> <% } %> <% }); %>
                   </td>
                   <td><%= tarea.descripcion %></td>
-                  <!-- <td>
-                    <a
-                      href="/editarCultivo/<%= tareas.id  %>"
-                      class="btn btn-success btn-icon btn-sm"
-                    >
-                      <i class="fa fa-edit"></i>
-                    </a>
-                  </td>
                   <td>
-                    <form
-                      action="/eliminarCultivos/<%=tareas.id %>"
-                      method="post"
-                    >
-                      <button
-                        type="submit"
-                        class="btn btn-danger btn-icon btn-sm eliminar-categoria"
-                      >
-                        <i class="fa fa-trash"></i>
-                      </button>
-                    </form>
-                  </td> -->
-                  <td>
-                    <input type="checkbox" />
+                    <label class="checkbox-btn">
+                      <input id="checkbox" type="checkbox" data-id="<%= tarea.id
+                      %>" <%= tarea.estado ? 'checked' : '' %> />
+                      <span class="checkmark"></span>
+                    </label>
                   </td>
                 </tr>
                 <% }) %>
@@ -141,36 +126,100 @@
     </div>
   </div>
 </div>
+<script>
+  document.querySelectorAll("#checkbox").forEach((checkbox) => {
+    checkbox.addEventListener("change", function () {
+      const estado = this.checked ? 1 : 0;
+      const id = this.dataset.id;
+
+      fetch(`/tareas/${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ estado }),
+      });
+    });
+  });
+</script>
 <style>
-  /* Estilo básico para el checkbox */
-  input[type="checkbox"] {
-    -webkit-appearance: none; /* Remueve el estilo por defecto en WebKit/Blink */
-    -moz-appearance: none; /* Remueve el estilo por defecto en Firefox */
-    appearance: none; /* Remueve el estilo por defecto */
-    margin: 0;
-    width: 25px; /* Tamaño del checkbox */
+  /* Customize the label (the checkbox-btn) */
+  .checkbox-btn {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Hide the browser's default checkbox */
+  .checkbox-btn input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  .checkbox-btn label {
+    cursor: pointer;
+    font-size: 14px;
+  }
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
     height: 25px;
-    background: #f0f0f0; /* Color de fondo */
-    border-radius: 5px; /* Bordes redondeados */
-    border: 2px solid #d1d1d1; /* Borde del checkbox */
-    cursor: pointer; /* Cambia el cursor a tipo puntero */
-    position: relative; /* Posición relativa para el pseudo-elemento */
+    width: 25px;
+    border: 2.5px solid #ffffff;
+    transition: 0.2s linear;
+  }
+  .checkbox-btn input:checked ~ .checkmark {
+    background-color: transparent;
   }
 
-  /* Estilo cuando el checkbox está marcado */
-  input[type="checkbox"]:checked {
-    background: #0088cc; /* Color de fondo cuando está marcado */
-    border-color: #0077b3; /* Color del borde cuando está marcado */
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    left: 50%;
+    top: 40%;
+    width: 10px;
+    height: 14px;
+    border: 2px solid #0ea021;
+    filter: drop-shadow(0px 0px 10px #0ea021);
+    border-width: 0 2.5px 2.5px 0;
+    transition: 0.2s linear;
+    transform: translate(-50%, -50%) rotate(-90deg) scale(0.2);
   }
 
-  /* Estilo para el tick (✓) cuando el checkbox está marcado */
-  input[type="checkbox"]:checked:after {
-    content: "✓"; /* Carácter para el tick */
-    position: absolute; /* Posición absoluta dentro del checkbox */
-    top: 50%; /* Centrado vertical */
-    left: 50%; /* Centrado horizontal */
-    transform: translate(-50%, -50%); /* Ajuste fino para centrar el tick */
-    color: #fff; /* Color del tick */
-    font-size: 18px; /* Tamaño del tick */
+  /* Show the checkmark when checked */
+  .checkbox-btn input:checked ~ .checkmark:after {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    animation: pulse 1s ease-in;
+  }
+
+  .checkbox-btn input:checked ~ .checkmark {
+    transform: rotate(45deg);
+    border: none;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    }
+    50% {
+      transform: translate(-50%, -50%) rotate(0deg) scale(1.6);
+    }
   }
 </style>

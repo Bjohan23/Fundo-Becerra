@@ -62,6 +62,40 @@ const rCultivos = (req, res) => {
     }
   );
 };
+// registrar tareas
+const rTareas = (req, res) => {
+  const { descripcion, trabajador } = req.body;
+  console.log("datos", descripcion, trabajador);
+  db.query(
+    "INSERT INTO tareas (descripcion, trabajador_id) VALUES (?,?)",
+    [descripcion, trabajador],
+    (error, result) => {
+      if (error) {
+        res.status(500).send("Error al insertar la tarea");
+      } else {
+        // consulta para obtener el nombre del trabajador
+        db.query(
+          "SELECT nombres FROM trabajadores WHERE id = ?",
+          [trabajador],
+          (error, results) => {
+            if (error) {
+              res.status(500).send("Error al obtener el nombre del trabajador");
+            } else {
+              const nombreTrabajador = results[0].nombres;
+              console.log("Tarea insertada correctamente:", result);
+              io.emit("nuevaTarea", {
+                id: result.insertId,
+                descripcion,
+                trabajador: nombreTrabajador, // Enviar el nombre del trabajador en lugar del ID
+              });
+              res.redirect("/tareas");
+            }
+          }
+        );
+      }
+    }
+  );
+};
 const rCategorias = (req, res) => {
   const { nombre } = req.body;
   // Crear una nueva categoría
@@ -117,4 +151,10 @@ const rHorasTrabajadas = (req, res) => {
   );
 };
 
-module.exports = { rTrabajadores, rCultivos, rCategorias, rHorasTrabajadas };
+module.exports = {
+  rTrabajadores,
+  rCultivos,
+  rCategorias,
+  rHorasTrabajadas,
+  rTareas,
+};

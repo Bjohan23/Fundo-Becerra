@@ -36,6 +36,23 @@ socket.on("nuevoTrabajador", function (trabajador) {
   document.querySelector("table tbody").innerHTML += newRow;
 });
 
+socket.on("nuevaTarea", function (tarea) {
+  // Agregar la fila con los datos de la nueva tarea a la tabla
+  const newRow = `
+    <tr>
+      <td>${tarea.id}</td>
+      <td>${tarea.trabajador}</td>
+      <td>${tarea.descripcion}</td>
+      <td><label class="checkbox-btn">
+      <label for="checkbox"></label>
+      <input id="checkbox" type="checkbox" />
+      <span class="checkmark"></span>
+    </label></td>
+    </tr>
+  `;
+  document.querySelector("tbody").innerHTML += newRow;
+});
+
 // nueva categoria
 socket.on("nuevaCategoria", (categoria) => {
   const nuevaFila = `

@@ -17,12 +17,14 @@ const {
   vistaEditTrabajadores,
   vistaCuentas,
   vistaTareas,
+  vistaLogin,
 } = require("../controllers/PageControllers");
 const {
   rTrabajadores,
   rCultivos,
   rCategorias,
   rHorasTrabajadas,
+  rTareas,
 } = require("../controllers/registroControllers");
 const {
   eliminarCategoria,
@@ -33,12 +35,14 @@ const {
   actualizarCategoria,
   actualizarCultivo,
   actualizarTrabajadores,
+  acTareas,
 } = require("../controllers/actualizarControllers");
 const { mostrarCalendario } = require("../controllers/calendarioController");
 const router = express.Router();
 router.use(morgan("dev"));
 router.use("views", express.static("views"));
 // Rutas para las vistas
+router.get("/login", vistaLogin);
 router.get("/", vistaPrincipal);
 router.get("/tabla", vistaTable);
 router.get("/notificaciones", vistaNorificaciones);
@@ -56,6 +60,8 @@ router.get("/trabajadores_edit/:id", vistaEditTrabajadores);
 router.post("/rTrabajadores", rTrabajadores);
 router.post("/rCultivos", rCultivos);
 router.post("/rCategoria", rCategorias);
+router.post("/rTareas", rTareas);
+router.post("/tareas/:id", acTareas);
 router.post("/rHorasTrabajadas/:id", rHorasTrabajadas);
 
 // rutas para editar registros

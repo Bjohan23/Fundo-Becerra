@@ -9,6 +9,9 @@ const vistaPrincipal = function (req, res) {
     console.log(categorias);
   });
 };
+const vistaLogin = function (req, res) {
+  res.render("login");
+};
 const vistaTable = function (req, res) {
   // hacemos la consulta a la base de datos
   db.query("SELECT * FROM trabajadores", (error, trabajadores, fields) => {
@@ -143,4 +146,5 @@ module.exports = {
   vistaEditTrabajadores,
   vistaCuentas,
   vistaTareas,
+  vistaLogin,
 };

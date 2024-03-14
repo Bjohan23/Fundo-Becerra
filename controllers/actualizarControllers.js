@@ -86,9 +86,26 @@ const actualizarTrabajadores = (req, res) => {
     }
   );
 };
+const acTareas = (req, res) => {
+  const { estado } = req.body;
+  const { id } = req.params;
+
+  db.query(
+    "UPDATE tareas SET estado = ? WHERE id = ?",
+    [estado, id],
+    (error, result) => {
+      if (error) {
+        res.status(500).send("Error al actualizar el estado de la tarea");
+      } else {
+        res.send("Estado de la tarea actualizado correctamente");
+      }
+    }
+  );
+};
 
 module.exports = {
   actualizarCultivo,
   actualizarCategoria,
   actualizarTrabajadores,
+  acTareas,
 };
