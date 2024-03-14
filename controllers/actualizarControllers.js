@@ -1,4 +1,6 @@
 const db = require("../db/db");
+const socket = require("../socket");
+const io = socket.getIO();
 
 const actualizarCultivo = (req, res) => {
   const { id, nombreProducto, peso, cantidad, fecha, categoria } = req.body;
@@ -19,6 +21,14 @@ const actualizarCultivo = (req, res) => {
         res.status(500).send("Error al actualizar el cultivo");
       } else {
         console.log("Cultivo actualizado correctamente:", result);
+        io.emit("cultivoActualizado", {
+          id,
+          nombreProducto,
+          peso,
+          cantidad,
+          fecha,
+          categoria,
+        });
         res.redirect("/cultivos");
       }
     }
@@ -35,6 +45,7 @@ const actualizarCategoria = (req, res) => {
         res.status(500).send("Error al actualizar la categoría");
       } else {
         console.log("Categoría actualizada correctamente:", result);
+        io.emit("categoriaActualizada", { id, nombre });
         res.redirect("/categorias");
       }
     }
@@ -55,12 +66,21 @@ const actualizarTrabajadores = (req, res) => {
   );
   db.query(
     "UPDATE trabajadores SET nombres = ?, apellidos = ?,celular = ?, dni= ?, edad = ? ,sexo = ? WHERE id = ?",
-    [ nombres, apellidos, celular, dni, edad, sexo,id],
+    [nombres, apellidos, celular, dni, edad, sexo, id],
     (error, result) => {
       if (error) {
         res.status(500).send("Error al actualizar el trabajador");
       } else {
-        // console.log("Trabajador actualizado correctamente:", result);
+        // Emitir evento de trabajador actualizado
+        io.emit("trabajadorActualizado", {
+          id,
+          nombres,
+          apellidos,
+          dni,
+          celular,
+          edad,
+          sexo,
+        });
         res.redirect("/tabla");
       }
     }

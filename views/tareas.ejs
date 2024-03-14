@@ -1,0 +1,176 @@
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">tareas 👨‍🌾</h4>
+          <p class="category">tareas Registradas</p>
+        </div>
+        <div class="card-body">
+          <!-- link con icono de + -->
+          <a
+            href="#"
+            class="btn btn-primary btn-icon btn-sm"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+          >
+            <i class="fa fa-plus"></i>
+          </a>
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="exampleModalCenter"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true"
+          >
+            <div
+              class="modal-dialog modal-dialog-centered modal-lg"
+              role="document"
+            >
+              <div class="modal-content" id="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">
+                    Registrar Tarea
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form action="/rtareas" method="post">
+                    <div class="form-group">
+                      <label for="categoria">Trabajador</label>
+                      <select class="form-control" id="select" name="categoria">
+                        <option value="">Selecciona un trabajador</option>
+                        <!-- Aquí puedes cargar dinámicamente las opciones de categoría desde la base de datos -->
+                        <% trabajadores.forEach(trabajador => { %>
+                        <option value="<%= trabajador.id %>">
+                          <%= trabajador.nombres %>
+                        </option>
+                        <% }); %>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="descripcion">Descripción</label>
+                      <textarea
+                        class="form-control"
+                        id="descripcion"
+                        name="descripcion"
+                        rows="3"
+                        placeholder="Descripción de la tarea"
+                      ></textarea>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary">
+                        Guardar Tarea
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                      >
+                        Cerrar
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- fin modal -->
+          <div class="table-responsive">
+            <table class="table table-hover table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Trabajador</th>
+                  <th scope="col">Tarea</th>
+                  <!-- <th scope="col">Editar</th>
+                  <th scope="col">Borrar</th> -->
+                  <th scope="col">Echo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% tareas.forEach((tarea) => { %>
+                <tr data-id="<%= tarea.id %>">
+                  <th scope="row" style="color: aliceblue"><%= tarea.id %></th>
+                  <td>
+                    <% trabajadores.forEach(trabajador => { %> <%
+                    if(tarea.trabajador_id == trabajador.id) { %> <%=
+                    trabajador.nombres %> <% } %> <% }); %>
+                  </td>
+                  <td><%= tarea.descripcion %></td>
+                  <!-- <td>
+                    <a
+                      href="/editarCultivo/<%= tareas.id  %>"
+                      class="btn btn-success btn-icon btn-sm"
+                    >
+                      <i class="fa fa-edit"></i>
+                    </a>
+                  </td>
+                  <td>
+                    <form
+                      action="/eliminarCultivos/<%=tareas.id %>"
+                      method="post"
+                    >
+                      <button
+                        type="submit"
+                        class="btn btn-danger btn-icon btn-sm eliminar-categoria"
+                      >
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </form>
+                  </td> -->
+                  <td>
+                    <input type="checkbox" />
+                  </td>
+                </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  /* Estilo básico para el checkbox */
+  input[type="checkbox"] {
+    -webkit-appearance: none; /* Remueve el estilo por defecto en WebKit/Blink */
+    -moz-appearance: none; /* Remueve el estilo por defecto en Firefox */
+    appearance: none; /* Remueve el estilo por defecto */
+    margin: 0;
+    width: 25px; /* Tamaño del checkbox */
+    height: 25px;
+    background: #f0f0f0; /* Color de fondo */
+    border-radius: 5px; /* Bordes redondeados */
+    border: 2px solid #d1d1d1; /* Borde del checkbox */
+    cursor: pointer; /* Cambia el cursor a tipo puntero */
+    position: relative; /* Posición relativa para el pseudo-elemento */
+  }
+
+  /* Estilo cuando el checkbox está marcado */
+  input[type="checkbox"]:checked {
+    background: #0088cc; /* Color de fondo cuando está marcado */
+    border-color: #0077b3; /* Color del borde cuando está marcado */
+  }
+
+  /* Estilo para el tick (✓) cuando el checkbox está marcado */
+  input[type="checkbox"]:checked:after {
+    content: "✓"; /* Carácter para el tick */
+    position: absolute; /* Posición absoluta dentro del checkbox */
+    top: 50%; /* Centrado vertical */
+    left: 50%; /* Centrado horizontal */
+    transform: translate(-50%, -50%); /* Ajuste fino para centrar el tick */
+    color: #fff; /* Color del tick */
+    font-size: 18px; /* Tamaño del tick */
+  }
+</style>

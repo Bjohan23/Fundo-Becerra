@@ -46,8 +46,21 @@ const vistaCultivos = (req, res) => {
 const vistaNorificaciones = function (req, res) {
   res.render("notificaciones");
 };
+const vistaCuentas = (req, res) => {
+  res.render("cuentas");
+};
 const vistaUsuario = (req, res) => {
   res.render("user");
+};
+const vistaTareas = (req, res) => {
+  db.query("SELECT * FROM tareas", (error, tareas, fields) => {
+    if (error) throw error;
+    db.query("SELECT * FROM trabajadores", (error, trabajadores, fields) => {
+      if (error) throw error;
+      res.render("tareas", { tareas: tareas, trabajadores: trabajadores });
+      console.log(tareas);
+    });
+  });
 };
 
 const vistaEror = function (req, res) {
@@ -128,4 +141,6 @@ module.exports = {
   vistaEditCategoria,
   vistaEditCultivo,
   vistaEditTrabajadores,
+  vistaCuentas,
+  vistaTareas,
 };

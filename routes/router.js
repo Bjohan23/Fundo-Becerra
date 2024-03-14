@@ -15,6 +15,8 @@ const {
   vistaEditCategoria,
   vistaEditCultivo,
   vistaEditTrabajadores,
+  vistaCuentas,
+  vistaTareas,
 } = require("../controllers/PageControllers");
 const {
   rTrabajadores,
@@ -43,6 +45,9 @@ router.get("/notificaciones", vistaNorificaciones);
 router.get("/user", vistaUsuario);
 router.get("/categorias", vistaTableCategorias);
 router.get("/cultivos", vistaCultivos);
+router.get("/cuentas", vistaCuentas);
+router.get("/tareas", vistaTareas);
+
 router.get("/editarCategoria/:id", vistaEditCategoria);
 router.get("/editarCultivo/:id", vistaEditCultivo);
 router.get("/trabajadores_edit/:id", vistaEditTrabajadores);

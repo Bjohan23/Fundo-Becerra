@@ -7,12 +7,12 @@ let numUsers = 0;
 module.exports = {
   init: (httpServer) => {
     io = Server(httpServer);
-    io.on('connection', (socket) => {
+    io.on("connection", (socket) => {
       numUsers++;
-      io.emit('numUsers', numUsers);
-      socket.on('disconnect', () => {
+      io.emit("numUsers", numUsers);
+      socket.on("disconnect", () => {
         numUsers--;
-        io.emit('numUsers', numUsers);
+        io.emit("numUsers", numUsers);
       });
     });
     return io;

@@ -1,4 +1,6 @@
 const db = require("../db/db");
+const socket = require("../socket");
+const io = socket.getIO();
 
 const eliminarCategoria = (req, res) => {
   const { id } = req.params;
@@ -8,6 +10,7 @@ const eliminarCategoria = (req, res) => {
         .status(404)
         .render("404", { texto: "Error al eliminar la categoría" });
     } else {
+      io.emit("categoriaEliminada", { id });
       res.redirect("/categorias");
     }
   });
@@ -19,6 +22,7 @@ const eliminarCultivos = (req, res) => {
     if (error) {
       res.status(404).render("404", { texto: "Error al eliminar el cultivo" });
     } else {
+      io.emit("cultivoEliminado", { id });
       res.redirect("/cultivos");
     }
   });
@@ -31,6 +35,9 @@ const eliminarTrabajadores = (req, res) => {
         .status(404)
         .render("404", { texto: "Error al eliminar el trabajador" });
     } else {
+      // Emitir evento de trabajador eliminado
+      io.emit("trabajadorEliminado", { id });
+      console.log("Trabajador eliminado correctamente", { id });
       res.redirect("/tabla");
     }
   });

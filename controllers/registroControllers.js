@@ -8,10 +8,11 @@ const rTrabajadores = (req, res) => {
   db.query(
     "INSERT INTO trabajadores (nombres, apellidos, edad, sexo, celular, dni) VALUES (?,?,?,?,?,?)",
     [nombres, apellidos, edad, sexo, celular, dni],
-    (error, trabajadores, fields) => {
+    (error, results, fields) => {
       if (error) throw error;
       // Emitir evento a través de socket.io
       io.emit("nuevoTrabajador", {
+        id: results.insertId, // Aquí se obtiene el id del nuevo trabajador
         nombres,
         apellidos,
         edad,
@@ -33,14 +34,36 @@ const rCultivos = (req, res) => {
       if (error) {
         res.status(500).send("Error al insertar el cultivo");
       } else {
-        console.log("Cultivo insertado correctamente:", result);
-        res.redirect("/cultivos");
+        // Consulta para obtener el nombre de la categoría
+        db.query(
+          "SELECT nombre FROM categoria WHERE id = ?",
+          [categoria],
+          (error, results) => {
+            if (error) {
+              res
+                .status(500)
+                .send("Error al obtener el nombre de la categoría");
+            } else {
+              const nombreCategoria = results[0].nombre;
+              console.log("Cultivo insertado correctamente:", result);
+              io.emit("nuevoCultivo", {
+                id: result.insertId,
+                nombreProducto,
+                peso,
+                cantidad,
+                fecha,
+                categoria: nombreCategoria, // Usar el nombre de la categoría en lugar del ID
+              });
+              res.redirect("/cultivos");
+            }
+          }
+        );
       }
     }
   );
 };
 const rCategorias = (req, res) => {
-  const { id, nombre } = req.body;
+  const { nombre } = req.body;
   // Crear una nueva categoría
   db.query(
     "INSERT INTO categoria (nombre) VALUES (?)",
@@ -50,6 +73,10 @@ const rCategorias = (req, res) => {
         res.status(500).send("Error al insertar la categoría");
       } else {
         console.log("Categoría insertada correctamente:", result);
+        io.emit("nuevaCategoria", {
+          id: result.insertId,
+          nombre,
+        });
         res.redirect("/categorias");
       }
     }

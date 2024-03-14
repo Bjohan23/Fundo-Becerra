@@ -132,7 +132,7 @@
               </thead>
               <tbody>
                 <% cultivos.forEach((cultivo) => { %>
-                <tr>
+                <tr data-id="<%= cultivo.id %>">
                   <th scope="row" style="color: aliceblue">
                     <%= cultivo.id %>
                   </th>

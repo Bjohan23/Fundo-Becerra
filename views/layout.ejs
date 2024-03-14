@@ -101,17 +101,24 @@
               </a>
             </li>
             <li>
-              <a href="/map">
-                <i class="tim-icons icon-pin"></i>
-                <p>Mapas</p>
+              <a href="/cuentas">
+                <i class="tim-icons icon-credit-card"></i>
+                <p>Cuentas</p>
               </a>
             </li>
             <li>
+              <a href="/tareas">
+                <!-- tareas  -->
+                <i class="tim-icons icon-notes"></i>
+                <p>Tareas</p>
+              </a>
+            </li>
+            <!-- <li>
               <a href="/notificaciones">
                 <i class="tim-icons icon-bell-55"></i>
                 <p>Notificaciones</p>
               </a>
-            </li>
+            </li> -->
 
             <li>
               <a href="/typography">
@@ -232,7 +239,7 @@
                   </a>
                   <ul class="dropdown-menu dropdown-navbar">
                     <li class="nav-link">
-                      <a href="#" class="nav-item dropdown-item">Perfil</a>
+                      <a href="/user" class="nav-item dropdown-item">Perfil</a>
                     </li>
                     <li class="nav-link">
                       <a
@@ -240,6 +247,14 @@
                         class="nav-item dropdown-item"
                         id="fullscreenButton"
                         >Pantalla completa</a
+                      >
+                      <!-- para salir de la pantalla completa  -->
+                      <a
+                        href="#"
+                        class="nav-item dropdown-item"
+                        style="display: none"
+                        id="exitFullscreenButton"
+                        >Salir de Pantalla completa</a
                       >
                     </li>
                     <li class="dropdown-divider"></li>
@@ -352,7 +367,7 @@
 
     <!-- socket.io -->
     <script src="/socket.io/socket.io.js" charset="utf-8"></script>
-    <script src="/assets/js/chat.js"></script>
+    <script src="/assets/js/socket.js"></script>
     <script src="/assets/js/grafico.js"></script>
 
     <script src="/assets/js/core/jquery.min.js"></script>

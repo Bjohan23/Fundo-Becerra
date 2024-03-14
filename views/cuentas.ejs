@@ -1,0 +1,176 @@
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Calcular 🌱</h4>
+          <p class="category">Calcular de forma manual😁</p>
+        </div>
+
+        <div class="card-body">
+          <!-- Botón para abrir el modal -->
+          <a
+            href="#"
+            class="btn btn-primary btn-icon btn-sm"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+          >
+            <i class="fa fa-plus"></i> Agregar Producto
+          </a>
+
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="exampleModalCenter"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true"
+          >
+            <div
+              class="modal-dialog modal-dialog-centered modal-lg"
+              role="document"
+            >
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">
+                    Registrar Producto
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <!-- Formulario para agregar un producto -->
+                  <form id="productForm">
+                    <div class="form-group">
+                      <label for="cantidad">Cantidad</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="cantidad"
+                        name="cantidad"
+                        placeholder="Cantidad del Producto o saco"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="pesoTotal">Peso Total</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="pesoTotal"
+                        name="pesoTotal"
+                        placeholder="Peso total del Producto o saco"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="pesoUnitario">Peso Unitario</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="pesoUnitario"
+                        name="pesoUnitario"
+                        placeholder="Peso unitario del Producto o saco"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="precioVenta">Precio Venta</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="precioVenta"
+                        name="precioVenta"
+                        placeholder="Precio de venta del Producto"
+                        step="0.01"
+                        required
+                      />
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                      >
+                        Cerrar
+                      </button>
+                      <button type="submit" class="btn btn-primary">
+                        Guardar Producto
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Fin del modal -->
+
+          <div class="table-responsive">
+            <table class="table table-hover table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Peso Total</th>
+                  <th scope="col">Peso Unitario</th>
+                  <th scope="col">Precio Venta</th>
+                  <th scope="col">Ganancia</th>
+                </tr>
+              </thead>
+              <tbody id="productTableBody">
+                <!-- Aquí se mostrarán los productos agregados -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const productForm = document.getElementById("productForm");
+  const productTableBody = document.getElementById("productTableBody");
+
+  productForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    // Obtener los valores del formulario
+    const cantidad = parseFloat(document.getElementById("cantidad").value);
+    const pesoTotal = parseFloat(document.getElementById("pesoTotal").value);
+    const pesoUnitario = parseFloat(
+      document.getElementById("pesoUnitario").value
+    );
+    const precioVenta = parseFloat(
+      document.getElementById("precioVenta").value
+    );
+
+    // Calcular la ganancia
+    if (presoTotal) {
+      const ganancia = pesoTotal * precioVenta;
+    } else {
+      const ganancia = precioVenta * (pesoUnitario * cantidad);
+    }
+    // Crear una nueva fila en la tabla
+    const newRow = document.createElement("tr");
+    newRow.innerHTML = `
+        <td>${cantidad}</td>
+        <td>${pesoTotal}</td>
+        <td>${pesoUnitario}</td>
+        <td>${precioVenta}</td>
+        <td>${ganancia}</td>
+      `;
+
+    // Agregar la nueva fila a la tabla
+    productTableBody.appendChild(newRow);
+
+    // Limpiar los campos del formulario después de agregar el producto
+    productForm.reset();
+  });
+</script>
