@@ -1,0 +1,2 @@
+conseguir un host para subir la db 
+validar antes de registrar datos 

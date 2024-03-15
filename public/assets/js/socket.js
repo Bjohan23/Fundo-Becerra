@@ -124,6 +124,13 @@ socket.on("categoriaEliminada", function (data) {
     fila.remove();
   }
 });
+socket.on("tareaEliminada", function (data) {
+  // Buscar la fila con el id de la tarea eliminada y eliminarla
+  const fila = document.querySelector(`tr[data-id='${data.id}']`);
+  if (fila) {
+    fila.remove();
+  }
+});
 
 //------------------------actualizar
 socket.on("trabajadorActualizado", function (data) {
@@ -172,6 +179,25 @@ socket.on("cultivoActualizado", function (data) {
     ).action = `/eliminarCultivos/${data.id}`;
   }
 });
+
+// mostramos la tarea actualizada io.emit("tareaActualizada", { id, estado });
+socket.on("tareaActualizada", function (data) {
+  // Buscar la fila con el id de la tarea actualizada
+  const fila = document.querySelector(`tr[data-id='${data.id}']`);
+  if (fila) {
+    // Actualizar el estado del checkbox
+    fila.querySelector("td:nth-child(4) input").checked = data.estado == 1;
+
+    // Mostrar u ocultar el botón de eliminación en función del estado
+    if (data.estado == 1) {
+      console.log("mostrar 1");
+      fila.querySelector("td:nth-child(5) button").style.display = "block";
+    } else {
+      fila.querySelector("td:nth-child(5) button").style.display = "none";
+    }
+  }
+});
+
 // full screen
 document
   .getElementById("fullscreenButton")

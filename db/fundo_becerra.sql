@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-03-2024 a las 04:10:09
+-- Tiempo de generación: 15-03-2024 a las 01:52:22
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -65,8 +65,7 @@ CREATE TABLE `cultivo` (
 INSERT INTO `cultivo` (`id`, `nombre`, `peso`, `cantidad`, `cantidad_total`, `fecha`, `precio_venta`, `ganancia`, `ganancia_total`, `categoria_id`) VALUES
 (22, '', 120.00, 20, NULL, '2024-03-05', NULL, NULL, NULL, 1),
 (23, '', 122.00, 10, NULL, '2024-03-01', NULL, NULL, NULL, 1),
-(24, '', 1222.00, 700, NULL, '2024-04-11', NULL, NULL, NULL, 1),
-(25, '', 700.00, 700, NULL, '2024-02-01', NULL, NULL, NULL, 1);
+(24, '', 1222.00, 700, NULL, '2024-04-11', NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -106,6 +105,28 @@ INSERT INTO `messages` (`id`, `content`, `user`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tareas`
+--
+
+CREATE TABLE `tareas` (
+  `id` int(11) NOT NULL,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `trabajador_id` int(11) DEFAULT NULL,
+  `estado` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tareas`
+--
+
+INSERT INTO `tareas` (`id`, `descripcion`, `trabajador_id`, `estado`) VALUES
+(1, 'programar todo el dia ', 98, 0),
+(8, 'programar todo el Dia y toda la bendita noche', 98, 0),
+(11, 'guebear todo el dia ', 99, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `trabajadores`
 --
 
@@ -125,7 +146,7 @@ CREATE TABLE `trabajadores` (
 
 INSERT INTO `trabajadores` (`id`, `nombres`, `apellidos`, `celular`, `dni`, `edad`, `sexo`) VALUES
 (98, 'johan', 'Becerra Ventura ', '980957418', '77349472', 12, 'M'),
-(99, 'Luis', 'Becerra ', '1111', '', 0, 'M');
+(99, 'Luis', 'Becerra ', '980957418', '', 0, 'M');
 
 --
 -- Índices para tablas volcadas
@@ -151,6 +172,13 @@ ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `tareas`
+--
+ALTER TABLE `tareas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `trabajador_id` (`trabajador_id`);
+
+--
 -- Indices de la tabla `trabajadores`
 --
 ALTER TABLE `trabajadores`
@@ -164,13 +192,13 @@ ALTER TABLE `trabajadores`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `cultivo`
 --
 ALTER TABLE `cultivo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `messages`
@@ -179,10 +207,16 @@ ALTER TABLE `messages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
+-- AUTO_INCREMENT de la tabla `tareas`
+--
+ALTER TABLE `tareas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT de la tabla `trabajadores`
 --
 ALTER TABLE `trabajadores`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- Restricciones para tablas volcadas
@@ -193,6 +227,12 @@ ALTER TABLE `trabajadores`
 --
 ALTER TABLE `cultivo`
   ADD CONSTRAINT `cultivo_ibfk_1` FOREIGN KEY (`categoria_id`) REFERENCES `categoria` (`id`);
+
+--
+-- Filtros para la tabla `tareas`
+--
+ALTER TABLE `tareas`
+  ADD CONSTRAINT `tareas_ibfk_1` FOREIGN KEY (`trabajador_id`) REFERENCES `trabajadores` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -97,6 +97,7 @@ const acTareas = (req, res) => {
       if (error) {
         res.status(500).send("Error al actualizar el estado de la tarea");
       } else {
+        io.emit("tareaActualizada", { id, estado });
         res.send("Estado de la tarea actualizado correctamente");
       }
     }

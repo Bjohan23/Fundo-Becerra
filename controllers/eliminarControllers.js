@@ -42,4 +42,20 @@ const eliminarTrabajadores = (req, res) => {
     }
   });
 };
-module.exports = { eliminarCategoria, eliminarTrabajadores, eliminarCultivos };
+const eliminarTareas = (req, res) => {
+  const { id } = req.params;
+  db.query("DELETE FROM tareas WHERE id = ?", [id], (error, result) => {
+    if (error) {
+      res.status(404).render("404", { texto: "Error al eliminar la tarea" });
+    } else {
+      io.emit("tareaEliminada", { id });
+      res.redirect("/tareas");
+    }
+  });
+};
+module.exports = {
+  eliminarCategoria,
+  eliminarTrabajadores,
+  eliminarCultivos,
+  eliminarTareas,
+};

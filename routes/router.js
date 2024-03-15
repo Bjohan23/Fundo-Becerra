@@ -30,6 +30,7 @@ const {
   eliminarCategoria,
   eliminarCultivos,
   eliminarTrabajadores,
+  eliminarTareas,
 } = require("../controllers/eliminarControllers");
 const {
   actualizarCategoria,
@@ -75,6 +76,7 @@ router.post("/aTrabajadores", actualizarTrabajadores);
 router.post("/eliminarTrabajadores/:id", eliminarTrabajadores);
 router.post("/eliminarCultivos/:id", eliminarCultivos);
 router.post("/eliminarCategoria/:id", eliminarCategoria);
+router.post("/eliminarTarea/:id", eliminarTareas);
 
 // calenadario
 router.get("/mostraCalendario/:id", mostrarCalendario);
