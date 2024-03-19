@@ -73,7 +73,7 @@ router.post("/aTrabajadores", actualizarTrabajadores);
 
 // router.post("/eCategoria", actualizarCategoria);
 // rutas para eliminar registros
-router.post("/eliminarTrabajadores/:id", eliminarTrabajadores);
+router.delete("/eliminarTrabajadores/:id", eliminarTrabajadores);
 router.post("/eliminarCultivos/:id", eliminarCultivos);
 router.post("/eliminarCategoria/:id", eliminarCategoria);
 router.post("/eliminarTarea/:id", eliminarTareas);

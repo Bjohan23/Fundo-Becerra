@@ -145,8 +145,8 @@
                   <th class="text-center">Opciones</th>
                 </tr>
               </thead>
-              <% trabajadores.forEach((trabajadores)=>{ %>
               <tbody>
+                <% trabajadores.forEach((trabajadores)=>{ %>
                 <tr data-id="<%= trabajadores.id %>">
                   <td><%= trabajadores.nombres %></td>
                   <td><%= trabajadores.apellidos %></td>
@@ -164,17 +164,13 @@
                     </a>
                     <br />
                     <br />
-                    <form
-                      method="post"
-                      action="/eliminarTrabajadores/<%= trabajadores.id %>"
+                    <button
+                      type="button"
+                      class="btn btn-danger btn-icon btn-sm delete-button"
+                      data-id="<%= trabajadores.id %>"
                     >
-                      <button
-                        type="submit"
-                        class="btn btn-danger btn-icon btn-sm"
-                      >
-                        <i class="fa fa-trash"></i>
-                      </button>
-                    </form>
+                      <i class="fa fa-trash"></i>
+                    </button>
                     <br />
                     <!-- calendario icono  -->
                     <a
@@ -200,7 +196,30 @@
       </div> -->
   </div>
 </div>
-
-<!-- <script src="/socket.io/socket.io.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 <script>
- </script>
+  // $(document).ready(function () {
+  //   $(".delete-button").click(function () {
+  //     var id = $(this).data("id");
+  //     console.log("click");
+  //     console.log(id);
+  //     $.ajax({
+  //       url: "/eliminarTrabajadores/" + id,
+  //       type: "DELETE",
+  //       success: function (result) {
+  //         // Actualiza la tabla de trabajadores o haz lo que necesites hacer
+  //       },
+  //       error: function (xhr, status, error) {
+  //         if (xhr.responseJSON.error === "Trabajador con tareas") {
+  //           swal({
+  //             title: "Error",
+  //             text: "No se puede eliminar al trabajador porque tiene tareas registradas",
+  //             icon: "error",
+  //           });
+  //         }
+  //       },
+  //     });
+  //   });
+  // });
+</script>

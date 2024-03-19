@@ -1,2 +1,3 @@
 conseguir un host para subir la db 
 validar antes de registrar datos 
+validar si antes de eliminar  si un trabajador tiene tareas antes de eliminar 
