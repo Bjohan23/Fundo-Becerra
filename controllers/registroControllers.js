@@ -20,7 +20,7 @@ const rTrabajadores = (req, res) => {
         celular,
         dni,
       });
-      res.redirect("/tabla");
+    res.json({ message: "Trabajador registrado con éxito" });
     }
   );
 };

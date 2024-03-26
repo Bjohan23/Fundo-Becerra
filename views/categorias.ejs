@@ -102,17 +102,13 @@
                     </a>
                   </td>
                   <td>
-                    <form
-                      method="post"
-                      action="/eliminarCategoria/<%= categorias.id %>"
+                    <button
+                      type="submit"
+                      class="btn btn-danger btn-icon btn-sm eliminar-categoria"
+                      data-id="<%= categorias.id %>"
                     >
-                      <button
-                        type="submit"
-                        class="btn btn-danger btn-icon btn-sm eliminar-categoria"
-                      >
-                        <i class="fa fa-trash"></i>
-                      </button>
-                    </form>
+                      <i class="fa fa-trash"></i>
+                    </button>
                   </td>
                 </tr>
 

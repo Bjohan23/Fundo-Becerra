@@ -75,7 +75,7 @@ router.post("/aTrabajadores", actualizarTrabajadores);
 // rutas para eliminar registros
 router.delete("/eliminarTrabajadores/:id", eliminarTrabajadores);
 router.post("/eliminarCultivos/:id", eliminarCultivos);
-router.post("/eliminarCategoria/:id", eliminarCategoria);
+router.delete("/eliminarCategoria/:id", eliminarCategoria);
 router.post("/eliminarTarea/:id", eliminarTareas);
 
 // calenadario

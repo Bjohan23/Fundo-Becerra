@@ -3,13 +3,13 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Editar🏷️</h4>
+          <h4 class="card-title">Editar✏️</h4>
           <p class="category">Editar Trabajador🫠</p>
         </div>
 
         <div class="card-body">
           <!-- editar Trabajadores-->
-          <form action="/aTrabajadores" method="post">
+          <form id="formActualizacion" action="/aTrabajadores" method="post">
             <input name="id" type="hidden" value="<%= trabajador.id %>" />
             <strong style="color: aliceblue">id :<%= trabajador.id %> </strong>
             <div class="row">
