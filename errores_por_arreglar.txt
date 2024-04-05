@@ -1,3 +1,4 @@
 conseguir un host para subir la db 
 validar antes de registrar datos 
 falta mostrar la alerta de que no se puede eliminar categoria y esas cosas 
+socket para el calendario y editar  - si no se registra una fecha que automaticamente tome la fecha de hoy

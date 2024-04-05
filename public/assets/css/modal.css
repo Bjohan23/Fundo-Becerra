@@ -5,3 +5,6 @@
   background-color: #27293d;
   color: white;
 }
+#imagen {
+  filter: drop-shadow(-24px 26px 12px rgb(147, 208, 255));
+}

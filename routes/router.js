@@ -92,4 +92,4 @@ io.on("connection", (socket) => {
 // Middleware para manejar errores
 router.use(vistaEror);
 
-module.exports = router; // Cambia { router: router } por router
+module.exports = router;
