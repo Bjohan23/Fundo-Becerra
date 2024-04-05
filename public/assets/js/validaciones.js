@@ -1,6 +1,6 @@
 // Path: public/assets/js/validaciones.js
 $(document).ready(function () {
-  $(".delete-button").click(function () {
+  $(".delete-trabajador").click(function () {
     var id = $(this).data("id");
     $.ajax({
       url: "/eliminarTrabajadores/" + id,
@@ -30,30 +30,38 @@ $(document).ready(function () {
 // si la categoria no tiene productos asociados, se elimina
 // si la categoria tiene productos asociados, no se elimina y se muestra un mensaje de error en la vista
 
-$(document).on("click", ".eliminar-categoria", function () {
-  var id = $(this).data("id");
-  $.ajax({
-    url: "/eliminarCategoria/" + id,
-    type: "DELETE",
-    success: function (result) {
-      // Actualiza la tabla de categorías o haz lo que necesites hacer
-    },
-    error: function (xhr, status, error) {
-      if (xhr.responseJSON.error === "Categoria con productos") {
+$(document).ready(function () {
+  $(".delete-categoria").click(function () {
+    var id = $(this).data("id");
+    $.ajax({
+      url: "/eliminarCategoria/" + id,
+      type: "DELETE",
+      success: function (result) {
+        // mostrar alerta cuando se elimina
         Swal.fire({
-          title: "Error",
-          text: "No se puede eliminar la categoría porque tiene productos asociados",
-          icon: "error",
-          showClass: {
-            popup: "animate__animated animate__backInDown",
-          },
-          hideClass: {
-            popup: "animate__animated animate__backOutDown",
-          },
-          footer: '<a href="/productos">Ir a productos</a>',
+          position: "top-end",
+          icon: "success",
+          title: "Eliminado",
+          showConfirmButton: false,
+          timer: 1500,
         });
-      }
-    },
+      },
+      error: function (xhr, status, error) {
+        if (xhr.responseJSON.error === "Categoria asociada a cultivos") {
+          Swal.fire({
+            title: "Error",
+            text: "No se puede eliminar categoria porque tiene cultivos registrados",
+            icon: "error",
+            showClass: {
+              popup: "animate__animated animate__backInDown",
+            },
+            hideClass: {
+              popup: "animate__animated animate__backOutDown",
+            },
+          });
+        }
+      },
+    });
   });
 });
 
