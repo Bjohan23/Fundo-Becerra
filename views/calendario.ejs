@@ -37,12 +37,12 @@
           <form method="post" action="/rHorasTrabajadas/<%= idTrabajador %>">
             <div class="form-group">
               <label>
-                <strong style="color: aliceblue"
-                  >iD : <%= idTrabajador %>
+                <strong style="color: aliceblue">
+                  iD : <%= idTrabajador %>
                 </strong>
                 <br />
-                Horas Trabajadas</label
-              >
+                Horas Trabajadas
+              </label>
               <!-- mostramos una lista : medio dia , dia completo ,solo tarde -->
               <select class="form-control" name="horas">
                 <option style="background-color: black" value="5">
@@ -94,7 +94,6 @@
     </div>
   </div>
 </div>
-
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const calendarEl = document.getElementById("calendar");
@@ -108,10 +107,8 @@
                     <span class="fc-title">${info.event.title}</span>
                  </div>
                  <br>
-                 <div class="fc-horas-trabajadas">${info.event.extendedProps.horas } horas</div>`,
-
+                 <div class="fc-horas-trabajadas">${info.event.extendedProps.horas } horas</div>`
                 };
-
       }
     });
 

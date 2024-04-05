@@ -13,25 +13,33 @@ socket.on("nuevoTrabajador", function (trabajador) {
       <td>${trabajador.nombres}</td>
       <td>${trabajador.apellidos}</td>
       <td>${trabajador.celular}</td>
-      <td class="text-center">
-        <a href="/trabajadores_edit/${trabajador.id}" class="btn btn-success btn-icon btn-sm">
-          <i class="fa fa-edit"></i>
-        </a>
-        <br />
-        <br />
-        <form method="post" action="/eliminarTrabajadores/${trabajador.id}">
-          <button type="submit" class="btn btn-danger btn-icon btn-sm">
-            <i class="fa fa-trash"></i>
-          </button>
-        </form>
-        <br />
-        <br />
-        <!-- calendario icono  -->
-        <a href="/mostraCalendario/${trabajador.id}" class="btn btn-info btn-icon btn-sm">
-          <i class="fa fa-calendar"></i>
-        </a>
-      </td>
-    </tr>`;
+      <td class="text-center m">
+           <a
+             href="/trabajadores_edit/${trabajador.id}"
+             class="btn btn-success btn-icon btn-sm mt-3"
+           >
+             <i class="fa fa-edit"></i>
+           </a>
+
+           
+           <button
+            type="button"
+            class="btn btn-danger btn-icon btn-sm delete-button mt-3"
+            data-id="${trabajador.id}"
+            onmouseover="mostrarID(this)"
+             >
+               <i class="fa fa-trash"></i>
+           </button>
+          
+           <!-- calendario icono  -->
+           <a
+             href="/mostraCalendario/${trabajador.id}"
+             class="btn btn-info btn-icon btn-sm mt-3"
+           >
+             <i class="fa fa-calendar"></i>
+           </a>
+         </td>
+      </tr>`;
   // Agregar la nueva fila a la tabla
   document.querySelector("table tbody").innerHTML += newRow;
 });

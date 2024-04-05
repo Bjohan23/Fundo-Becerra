@@ -167,6 +167,7 @@
                       type="button"
                       class="btn btn-danger btn-icon btn-sm delete-button mt-3"
                       data-id="<%= trabajadores.id %>"
+                      onmouseover="mostrarID(this)"
                     >
                       <i class="fa fa-trash"></i>
                     </button>
@@ -196,3 +197,9 @@
   </div>
 </div>
 
+<script>
+  // function mostrarID(elemento) {
+  //   var id = elemento.getAttribute("data-id");
+  //   alert("El ID es: " + id);
+  // }
+</script>
