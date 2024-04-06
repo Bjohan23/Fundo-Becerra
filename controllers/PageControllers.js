@@ -1,13 +1,18 @@
-const db = require("../db/db");
+const db = require("../db/bdb");
 
-const vistaPrincipal = function (req, res) {
+const vistaPrincipal = async function (req, res) {
   // hacemos la consulta a la base de datos
-  db.query("SELECT * FROM categoria", (error, categorias, fields) => {
-    if (error) throw error;
-    // renderizamos la vista y le pasamos los datos de la consulta
-    res.render("home", { categorias: categorias });
-    console.log(categorias);
-  });
+  // db.query("SELECT * FROM categoria", (error, categorias, fields) => {
+  //   if (error) throw error;
+  //   // renderizamos la vista y le pasamos los datos de la consulta
+  //   res.render("home", { categorias: categorias });
+  //   console.log(categorias);
+  // });
+
+  const result = await db`select version()`;
+  res.render("home", {categorias: result});
+ 
+
 };
 const vistaLogin = function (req, res) {
   res.render("login");
