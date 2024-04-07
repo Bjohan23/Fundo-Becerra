@@ -1,6 +1,6 @@
 async function getData() {
-  // const response = await fetch("https://api-fundo.onrender.com/api/cultivos");
-  const response = await fetch("http://localhost:30001/api/cultivos");
+  const response = await fetch("https://api-fundo.onrender.com/api/cultivos");
+  // const response = await fetch("http://localhost:30001/api/cultivos");
   const data = await response.json();
   return data;
 }
