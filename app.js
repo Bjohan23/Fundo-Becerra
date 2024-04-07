@@ -5,6 +5,9 @@ const path = require("path");
 const expressLayouts = require("express-ejs-layouts");
 const app = express();
 const bodyParser = require("body-parser");
+require("dotenv").config();
+
+console.log(process.env.PGDATABASE); // 'fundo_becerra'
 
 app.set("view engine", "ejs");
 app.use(expressLayouts);

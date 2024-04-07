@@ -1,4 +1,4 @@
-const db = require("../db/db");
+const db = require("../db/db3");
 
 const vistaPrincipal = function (req, res) {
   // hacemos la consulta a la base de datos
