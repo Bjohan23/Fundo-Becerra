@@ -44,6 +44,30 @@ const vistaCultivos = async (req, res) => {
   }
 };
 
+const vistaTareas = async (req, res) => {
+  try {
+    const tareas = await db`SELECT * FROM tareas`;
+    const trabajadores = await db`SELECT * FROM trabajadores`;
+    res.render("tareas", { tareas: tareas, trabajadores: trabajadores });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .send("Error al obtener tareas o trabajadores: " + error.message);
+  }
+};
+
+// const vistaTareas = (req, res) => {
+//   db.query("SELECT * FROM tareas", (error, tareas, fields) => {
+//     if (error) throw error;
+//     db.query("SELECT * FROM trabajadores", (error, trabajadores, fields) => {
+//       if (error) throw error;
+//       res.render("tareas", { tareas: tareas, trabajadores: trabajadores });
+//       console.log(tareas);
+//     });
+//   });
+// };
+
 const vistaNorificaciones = function (req, res) {
   res.render("notificaciones");
 };
@@ -58,16 +82,6 @@ const vistaEror = function (req, res) {
   res.status(404).render("404");
 };
 
-const vistaTareas = (req, res) => {
-  db.query("SELECT * FROM tareas", (error, tareas, fields) => {
-    if (error) throw error;
-    db.query("SELECT * FROM trabajadores", (error, trabajadores, fields) => {
-      if (error) throw error;
-      res.render("tareas", { tareas: tareas, trabajadores: trabajadores });
-      console.log(tareas);
-    });
-  });
-};
 // editar
 const vistaEditCategoria = async (req, res) => {
   const { id } = req.params;
