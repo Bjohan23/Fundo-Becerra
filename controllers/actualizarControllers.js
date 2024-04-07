@@ -1,4 +1,4 @@
-const db = require("../db/db3");
+const db = require("../db/db");
 const socket = require("../socket");
 const io = socket.getIO();
 
@@ -34,6 +34,8 @@ const actualizarCultivo = (req, res) => {
     }
   );
 };
+
+
 const actualizarCategoria = (req, res) => {
   const { nombre, id } = req.body;
   console.log("Datos a actualizar:", nombre, id);
