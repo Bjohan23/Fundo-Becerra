@@ -48,6 +48,7 @@ const vistaCultivos = (req, res) => {
     });
   });
 };
+
 const vistaNorificaciones = function (req, res) {
   res.render("notificaciones");
 };
@@ -57,6 +58,11 @@ const vistaCuentas = (req, res) => {
 const vistaUsuario = (req, res) => {
   res.render("user");
 };
+
+const vistaEror = function (req, res) {
+  res.status(404).render("404");
+};
+
 const vistaTareas = (req, res) => {
   db.query("SELECT * FROM tareas", (error, tareas, fields) => {
     if (error) throw error;
@@ -66,10 +72,6 @@ const vistaTareas = (req, res) => {
       console.log(tareas);
     });
   });
-};
-
-const vistaEror = function (req, res) {
-  res.status(404).render("404");
 };
 // editar
 const vistaEditCategoria = (req, res) => {

@@ -1,7 +1,5 @@
-const { render } = require("ejs");
 const db = require("../db/db-local");
 const { format } = require("date-fns");
-
 const obtenerEventosTrabajador = (id, callback) => {
   db.query(
     "SELECT Fecha, Horas FROM RegistroHoras WHERE ID_Trabajador = ?",
