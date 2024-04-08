@@ -1,4 +1,4 @@
-const db = require("../db/db3");
+const db = require("../db/db-local");
 const socket = require("../socket");
 const io = socket.getIO();
 

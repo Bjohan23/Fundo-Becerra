@@ -1,4 +1,4 @@
-const db = require("../db/db3");
+const db = require("../db/db-local");
 const socket = require("../socket");
 const io = socket.getIO();
 
@@ -117,21 +117,6 @@ const rCategorias = (req, res) => {
   );
 };
 
-// const rHorasTrabajadas = (id, horas, fecha, callback) => {
-//   db.query(
-//     "INSERT INTO RegistroHoras (ID_Registro, Horas, Fecha) VALUES (?, ?, ?)",
-//     [id, horas, fecha],
-//     (error, result) => {
-//       if (error) {
-//         console.error(error);
-//         callback(error);
-//       } else {
-//         callback(null, result);
-//       }
-//     }
-//   );
-//   redirect("/mostrarCalendario/:id");
-// };
 const rHorasTrabajadas = (req, res) => {
   const { horas, fecha } = req.body;
   const id = req.params.id;
