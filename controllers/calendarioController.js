@@ -1,5 +1,5 @@
 const { render } = require("ejs");
-// const db = require("../db/db");
+// const db = require("../db/db3");
 // const { format, isValid } = require("date-fns");
 
 // const obtenerEventosTrabajador = (id, callback) => {
